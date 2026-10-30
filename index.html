@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ANTIGRAV // The Kinetic Momentum Agency</title>
+  <meta name="description" content="Every giant brand started as someone's quiet idea. We supply the kinetic physics and creative momentum that makes the world notice.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%23FF552E'/></svg>">
+</head>
+<body>
+
+  <!-- WebGL Three.js Kinetic Scene Canvas -->
+  <div id="kinetic-webgl-canvas"></div>
+
+  <!-- Workshop Technical Grid Overlay -->
+  <div class="workshop-grid-overlay"></div>
+
+  <!-- Kinetic Physics Magnetic Cursor -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+  <div id="cursor-badge"></div>
+
+  <!-- Kinetic Rail System (Copper/Amber Energy Conduit) -->
+  <div class="kinetic-rail-system" aria-hidden="true">
+    <div class="rail-track-bg"></div>
+    <div id="rail-progress-line"></div>
+    <div class="rail-node-marker act-1" title="Act I: Hero"></div>
+    <div class="rail-node-marker act-2" title="Act II: Dial"></div>
+    <div class="rail-node-marker act-3" title="Act III: Collision"></div>
+    <div class="rail-node-marker act-4" title="Act IV: Engines"></div>
+    <div class="rail-node-marker act-5" title="Act V: Ignition"></div>
+  </div>
+
+  <!-- Site Navigation Header -->
+  <header class="site-header">
+    <a href="#act-1-hero" class="brand-badge" data-magnetic data-cursor-label="RETURN">
+      <div class="brand-icon-box">
+        <div class="pulse-dot"></div>
+      </div>
+      <div>
+        <span class="brand-title">ANTIGRAV.</span>
+        <span class="brand-tag">KINETIC AGENCY</span>
+      </div>
+    </a>
+
+    <!-- Act-by-Act Nav Bar -->
+    <nav class="acts-nav-bar" aria-label="Acts Navigation">
+      <a href="#act-1-hero" class="nav-act-link active" data-act="1">ACT I // HERO</a>
+      <a href="#act-2-manifesto" class="nav-act-link" data-act="2">ACT II // SCALE DIAL</a>
+      <a href="#act-3-portfolio" class="nav-act-link" data-act="3">ACT III // WORK</a>
+      <a href="#act-4-engines" class="nav-act-link" data-act="4">ACT IV // ENGINES</a>
+      <a href="#act-5-ignition" class="nav-act-link" data-act="5">ACT V // IGNITE</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="#act-5-ignition" class="btn-header-cta" data-magnetic data-cursor-label="IGNITE">
+        <span>IGNITE SIGNAL</span>
+        <span>→</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Bottom Floating Telemetry Dock -->
+  <aside class="floating-telemetry-dock" aria-label="Laboratory Telemetry Dock">
+    <div class="dock-item">
+      <span>VELOCITY:</span>
+      <span class="telemetry-tag" id="hud-velocity-readout">0.0 m/s</span>
+    </div>
+    <div class="dock-item">
+      <span>RAIL:</span>
+      <span class="telemetry-tag" id="hud-rail-status">PRISM ARMED</span>
+    </div>
+    <button class="dock-btn" id="sound-toggle-btn" title="Toggle Procedural Synthesizer Audio" data-magnetic>
+      <span class="equalizer-icon" aria-hidden="true">
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+      </span>
+      <span class="toggle-label">AUDIO // ON</span>
+    </button>
+    <button class="dock-btn" id="motion-toggle-btn" title="Toggle Kinetic Motion Fallback" data-magnetic>
+      <span class="toggle-label">MOTION // FLUID</span>
+    </button>
+  </aside>
+
+  <!-- Main Narrative Content -->
+  <main class="content-wrapper">
+
+    <!-- ====================================================================
+         ACT I: THE REST STATE TO FULL VELOCITY // "THE RESTING EMBER"
+         ==================================================================== -->
+    <section id="act-1-hero" class="hero-section">
+      <div class="hero-telemetry-strip">
+        <span class="badge-act">ACT I // REST TO FULL VELOCITY</span>
+        <div class="badge-physics">
+          <span>MASS:</span> 1.0 SPARK
+        </div>
+        <div class="badge-physics">
+          <span>INERTIA:</span> STATIC EQUILIBRIUM
+        </div>
+        <div class="badge-physics">
+          <span>FRICTION COEFFICIENT:</span> &mu;<sub>s</sub> = 0.84
+        </div>
+      </div>
+
+      <div class="hero-headline-group">
+        <h2 class="hero-sub-title">Every movement starts as a quiet spark.</h2>
+        <h1 class="hero-giant-title">
+          WE ENGINEER THE <span class="highlight-orange">MOMENTUM.</span>
+        </h1>
+      </div>
+
+      <p class="hero-narrative-copy">
+        Every giant brand started as someone's quiet idea. Without applied force, that spark fades in the market friction.
+        <strong>We supply the visceral physics, cultural mass, and kinetic acceleration that makes the world notice.</strong>
+      </p>
+
+      <div class="hero-actions">
+        <button id="hero-shatter-trigger" class="btn-tactile-force" data-magnetic data-cursor-label="SHATTER">
+          <span>APPLY FORCE // SHATTER PRISM</span>
+          <span class="btn-icon-arrow">↯</span>
+        </button>
+
+        <div class="hero-drag-hint">
+          <div class="hint-mouse-icon">
+            <div class="hint-mouse-wheel"></div>
+          </div>
+          <span>TILT CURSOR TO ROLL EMBER · SCROLL TO RELEASE RAIL</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ACT II: THE SCALE DIAL // "THE LAWS OF MOMENTUM" (MANIFESTO)
+         ==================================================================== -->
+    <section id="act-2-manifesto" class="section-stage">
+      <div class="section-header-block">
+        <span class="section-label">ACT II // THE SCALE DIAL</span>
+        <h2 class="section-title">STRATEGY SCALES TO ANY MASS.</h2>
+        <p class="section-desc">
+          Marketing is applied physics. Whether you are an artisan baker kneading dough at dawn or an enterprise breaking into global airspace, momentum obeys the exact same laws. Spin the dial to see your trajectory.
+        </p>
+      </div>
+
+      <div class="scale-dial-container">
+        <!-- Interactive Stage Card & Telemetry -->
+        <div class="dial-interactive-stage">
+          <div class="dial-stage-selector-pills">
+            <button class="dial-stage-pill active" data-stage="0" data-magnetic>01 STREET CORNER</button>
+            <button class="dial-stage-pill" data-stage="1" data-magnetic>02 DIGITAL CREATOR</button>
+            <button class="dial-stage-pill" data-stage="2" data-magnetic>03 SCALING STARTUP</button>
+            <button class="dial-stage-pill" data-stage="3" data-magnetic>04 INDUSTRY PILLAR</button>
+          </div>
+
+          <div class="dial-card-content">
+            <div class="dial-badge-tag" id="dial-tag">STAGE 01 // BREAKING INERTIA</div>
+            <div class="dial-audience-target" id="dial-target">For Early Ideas & Local Founders</div>
+            <h3 class="dial-headline-text" id="dial-headline">
+              Taking the first step is the hardest part. We build your initial traction.
+            </h3>
+            <p class="dial-subhead-text" id="dial-subhead">
+              Strategy that scales to local budgets. Transforming an overlooked street corner or quiet craft into a beloved neighborhood institution.
+            </p>
+          </div>
+
+          <div class="dial-specs-grid">
+            <div class="dial-spec-item">
+              <span class="spec-key">VENTURE MASS:</span>
+              <span class="spec-val" id="spec-mass">120 kg</span>
+            </div>
+            <div class="dial-spec-item">
+              <span class="spec-key">MARKET FRICTION:</span>
+              <span class="spec-val" id="spec-friction">High Static</span>
+            </div>
+            <div class="dial-spec-item">
+              <span class="spec-key">ESCAPE FORCE:</span>
+              <span class="spec-val" id="spec-velocity">1.2 Mach</span>
+            </div>
+            <div class="dial-spec-item">
+              <span class="spec-key">TARGET TRAJECTORY:</span>
+              <span class="spec-val" id="spec-trajectory">Local Foothold</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rotational Dial Assembly Widget -->
+        <div class="dial-widget-visualizer">
+          <!-- 3D Holographic Wireframe Morph Viewport -->
+          <div class="hologram-display-frame">
+            <canvas id="dial-wireframe-canvas" width="280" height="180"></canvas>
+            <div class="hologram-stage-badge" id="hologram-stage-badge">01 // STOREFRONT CANOPY</div>
+          </div>
+
+          <div class="rotational-dial-assembly">
+            <div class="dial-outer-ring"></div>
+            <div class="dial-rotator-disc" id="dial-rotator" data-magnetic data-cursor-label="SPIN DIAL">
+              <div class="dial-needle-indicator"></div>
+              <div class="dial-center-boss">
+                <div class="dial-core-spark"></div>
+              </div>
+            </div>
+          </div>
+          <div class="dial-spin-hint">
+            <span>DRAG DIAL OR CLICK STAGES TO MORPH 3D WIREFRAME</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ACT III: THE COLLISION CHAMBER // PORTFOLIO SPLIT-STREAM
+         ==================================================================== -->
+    <section id="act-3-portfolio" class="section-stage">
+      <div class="section-header-block">
+        <span class="section-label">ACT III // THE COLLISION CHAMBER</span>
+        <h2 class="section-title">FRICTION VS. FLOW SPLIT-STREAM.</h2>
+        <p class="section-desc">
+          We do not showcase passive screenshots. We test kinetic momentum against real-world friction. Scrub the elastic divider across each pressurized capsule to reveal how raw obstacles transformed into cultural velocity.
+        </p>
+      </div>
+
+      <div class="collision-capsules-stream">
+
+        <!-- Case 01: Maison Rustique -->
+        <article class="case-capsule" data-case-id="maison-rustique">
+          <div class="capsule-meta-header">
+            <div class="capsule-title-box">
+              <div class="capsule-cat">01 // ARTISANAL BAKERY & HERITAGE PANTRY</div>
+              <h3>Maison Rustique</h3>
+            </div>
+            <div class="capsule-metrics-pills">
+              <div class="metric-badge-box">
+                <span class="metric-val" data-counter="340" data-prefix="+" data-suffix="%">+340%</span>
+                <span class="metric-lbl">WEEKEND FOOT TRAFFIC</span>
+              </div>
+              <div class="metric-badge-box">
+                <span class="metric-val">4 WKS</span>
+                <span class="metric-lbl">BREAD WAITLIST</span>
+              </div>
+              <button class="capsule-open-btn" data-magnetic data-cursor-label="EXPAND">DEEP DIVE ↗</button>
+            </div>
+          </div>
+
+          <div class="capsule-slider">
+            <!-- Left: Friction -->
+            <div class="capsule-friction">
+              <div class="split-card-inner">
+                <div class="friction-tag">THE FRICTION // QUIET STREET CORNER</div>
+                <div class="friction-text">Master craft sourdough baking in total obscurity on a quiet suburban side street.</div>
+                <div class="friction-sub">Zero digital footprint, zero morning queues, and completely overshadowed by commercial supermarket bakeries.</div>
+              </div>
+            </div>
+
+            <!-- Right: Flow -->
+            <div class="capsule-flow">
+              <div class="split-card-inner">
+                <div class="flow-tag">THE FLOW // CULTURAL CULT PHENOMENON</div>
+                <div class="flow-text">Morning queues stretching two blocks. Featured in Michelin Guides & National Food Reels.</div>
+                <div class="flow-sub">Tactile sourdough crackle ASMR campaigns, custom physical wax packaging, and a sold-out weekend membership model.</div>
+              </div>
+            </div>
+
+            <!-- Draggable Divider -->
+            <div class="slider-divider" data-magnetic data-cursor-label="SCRUB">
+              <div class="divider-knob">⟷</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Case 02: Kroma OS -->
+        <article class="case-capsule" data-case-id="kroma-os">
+          <div class="capsule-meta-header">
+            <div class="capsule-title-box">
+              <div class="capsule-cat">02 // NEXT-GEN SPATIAL COMPUTING SAAS</div>
+              <h3>Kroma OS</h3>
+            </div>
+            <div class="capsule-metrics-pills">
+              <div class="metric-badge-box">
+                <span class="metric-val" data-counter="4.2" data-prefix="$" data-suffix="M">$4.2M</span>
+                <span class="metric-lbl">QUALIFIED PIPELINE</span>
+              </div>
+              <div class="metric-badge-box">
+                <span class="metric-val" data-counter="82400" data-prefix="" data-suffix="">82,400</span>
+                <span class="metric-lbl">WAITLIST SIGNUPS</span>
+              </div>
+              <button class="capsule-open-btn" data-magnetic data-cursor-label="EXPAND">DEEP DIVE ↗</button>
+            </div>
+          </div>
+
+          <div class="capsule-slider">
+            <div class="capsule-friction">
+              <div class="split-card-inner">
+                <div class="friction-tag">THE FRICTION // DEEP TECH OBSCURITY</div>
+                <div class="friction-text">Revolutionary spatial operating system trapped inside sterile developer whitepapers.</div>
+                <div class="friction-sub">Zero inbound enterprise leads, sterile technical architecture diagrams, and high investor skepticism.</div>
+              </div>
+            </div>
+
+            <div class="capsule-flow">
+              <div class="split-card-inner">
+                <div class="flow-tag">THE FLOW // CATEGORY DEFINING LAUNCH</div>
+                <div class="flow-text">Interactive spatial web simulator that closed seed funding 3 weeks early.</div>
+                <div class="flow-sub">Visceral kinetic interactive web prisms, real-time spatial physics demos, and viral developer community challenges.</div>
+              </div>
+            </div>
+
+            <div class="slider-divider" data-magnetic data-cursor-label="SCRUB">
+              <div class="divider-knob">⟷</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Case 03: Solaris Mobility -->
+        <article class="case-capsule" data-case-id="solaris-mobility">
+          <div class="capsule-meta-header">
+            <div class="capsule-title-box">
+              <div class="capsule-cat">03 // CLEAN ELECTRIC URBAN CARGO</div>
+              <h3>Solaris Mobility</h3>
+            </div>
+            <div class="capsule-metrics-pills">
+              <div class="metric-badge-box">
+                <span class="metric-val" data-counter="420" data-prefix="+" data-suffix="%">+420%</span>
+                <span class="metric-lbl">B2B FLEET ORDERS</span>
+              </div>
+              <div class="metric-badge-box">
+                <span class="metric-val">14 METROS</span>
+                <span class="metric-lbl">EUROPEAN EXPANSION</span>
+              </div>
+              <button class="capsule-open-btn" data-magnetic data-cursor-label="EXPAND">DEEP DIVE ↗</button>
+            </div>
+          </div>
+
+          <div class="capsule-slider">
+            <div class="capsule-friction">
+              <div class="split-card-inner">
+                <div class="friction-tag">THE FRICTION // HARDWARE INVISIBLE</div>
+                <div class="friction-text">High-performance solar cargo trikes struggling against legacy diesel vans.</div>
+                <div class="friction-sub">Zero brand recognition in logistics procurement, low fleet confidence, and slow sales cycles.</div>
+              </div>
+            </div>
+
+            <div class="capsule-flow">
+              <div class="split-card-inner">
+                <div class="flow-tag">THE FLOW // URBAN REVOLUTION</div>
+                <div class="flow-text">14 European city deployments and multi-million municipal clean-air contracts.</div>
+                <div class="flow-sub">Cinematic street documentaries, real-time urban carbon calculators, and an uncompromising warm industrial visual identity.</div>
+              </div>
+            </div>
+
+            <div class="slider-divider" data-magnetic data-cursor-label="SCRUB">
+              <div class="divider-knob">⟷</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Case 04: Aura Audio -->
+        <article class="case-capsule" data-case-id="aura-audio">
+          <div class="capsule-meta-header">
+            <div class="capsule-title-box">
+              <div class="capsule-cat">04 // BOUTIQUE STUDIO MONITORS</div>
+              <h3>Aura Audio</h3>
+            </div>
+            <div class="capsule-metrics-pills">
+              <div class="metric-badge-box">
+                <span class="metric-val">6 MINS</span>
+                <span class="metric-lbl">FIRST BATCH SELLOUT</span>
+              </div>
+              <div class="metric-badge-box">
+                <span class="metric-val" data-counter="1.8" data-prefix="" data-suffix="M">1.8M</span>
+                <span class="metric-lbl">CREATOR IMPRESSIONS</span>
+              </div>
+              <button class="capsule-open-btn" data-magnetic data-cursor-label="EXPAND">DEEP DIVE ↗</button>
+            </div>
+          </div>
+
+          <div class="capsule-slider">
+            <div class="capsule-friction">
+              <div class="split-card-inner">
+                <div class="friction-tag">THE FRICTION // NICHE AUDIOPHILE CELL</div>
+                <div class="friction-text">Handcrafted walnut speakers known only to five local recording engineers.</div>
+                <div class="friction-sub">Invisible to modern digital producers, high manufacturing overhead, and zero direct-to-consumer momentum.</div>
+              </div>
+            </div>
+
+            <div class="capsule-flow">
+              <div class="split-card-inner">
+                <div class="flow-tag">THE FLOW // GLOBAL CULT PHENOMENON</div>
+                <div class="flow-text">Sold out initial batch of 500 units in 6 minutes to international music icons.</div>
+                <div class="flow-sub">Blind listening sessions with Grammy engineers, tactile mechanical unboxing films, and razor-sharp acoustic storytelling.</div>
+              </div>
+            </div>
+
+            <div class="slider-divider" data-magnetic data-cursor-label="SCRUB">
+              <div class="divider-knob">⟷</div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ACT IV: THE THREE KINETIC ENGINES // CAPABILITIES (ENGINE ROOM)
+         ==================================================================== -->
+    <section id="act-4-engines" class="section-stage">
+      <div class="section-header-block">
+        <span class="section-label">ACT IV // THE THREE KINETIC ENGINES</span>
+        <h2 class="section-title">THE ENGINE ROOM.</h2>
+        <p class="section-desc">
+          We discarded generic marketing capability lists. Real momentum is delivered through three interlocking mechanical stages that strip away market drag and accelerate your trajectory.
+        </p>
+      </div>
+
+      <!-- Engine Tabs -->
+      <div class="engine-room-tabs">
+        <button class="engine-tab-btn active" data-engine-idx="0" data-magnetic>
+          <span>01</span>
+          <span>THE COMPASS // IDENTITY & STORY</span>
+        </button>
+        <button class="engine-tab-btn" data-engine-idx="1" data-magnetic>
+          <span>02</span>
+          <span>THE FORGE // CREATIVE & MOTION</span>
+        </button>
+        <button class="engine-tab-btn" data-engine-idx="2" data-magnetic>
+          <span>03</span>
+          <span>THE THRUSTER // DISTRIBUTION & GROWTH</span>
+        </button>
+      </div>
+
+      <!-- Panel 01: The Compass -->
+      <div class="engine-panel active">
+        <div class="engine-panel-grid">
+          <div class="engine-info-card">
+            <div class="engine-num-badge">STAGE 01 // DIRECTIONAL COHERENCE</div>
+            <h3 class="engine-title">The Compass</h3>
+            <p class="engine-plain-meaning">
+              <strong>Plain Meaning:</strong> Stripping away commercial noise to define who you are, what you stand for, and why anyone should care.
+            </p>
+            <ul class="engine-deliverables-list">
+              <li>Category Architecture & Positioning Vectors</li>
+              <li>Brand Narrative & Core Human Spark Documentation</li>
+              <li>Editorial Tone of Voice & Conversational Playbook</li>
+              <li>Visual Identity Systems & Kinetic Logo Behavior</li>
+            </ul>
+          </div>
+
+          <div class="engine-sandbox-widget">
+            <div class="compass-gyro-widget">
+              <div>
+                <span class="spec-key">3D GYROSCOPE FREQUENCY TUNER</span>
+                <p class="friction-sub" style="margin-top: 6px;">
+                  Move your cursor to aim the magnetic needle. Adjust the resonance slider to lock carrier frequency.
+                </p>
+              </div>
+
+              <div class="compass-tuning-box">
+                <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.75rem;">
+                  <span>RESONANCE FREQUENCY:</span>
+                  <span id="compass-freq-val" style="color: var(--solar-orange); font-weight: 700;">432.0 Hz</span>
+                </div>
+                <input type="range" id="compass-freq-slider" class="compass-slider" min="300" max="600" step="0.5" value="432.0">
+                <div class="resonance-status-tag locked" id="compass-resonance-status">
+                  TRUE RESONANCE LOCKED // 100% SIGNAL
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 02: The Forge -->
+      <div class="engine-panel">
+        <div class="engine-panel-grid">
+          <div class="engine-info-card">
+            <div class="engine-num-badge">STAGE 02 // VISUAL MASS & IMPACT</div>
+            <h3 class="engine-title">The Forge & Amplifier</h3>
+            <p class="engine-plain-meaning">
+              <strong>Plain Meaning:</strong> Eye-catching 3D visuals, high-velocity reels, and tactile designs that make distracted people stop scrolling.
+            </p>
+            <ul class="engine-deliverables-list">
+              <li>3D Motion Design & Dynamic Kinetic Typography</li>
+              <li>High-Production Short-Form Content & ASMR Reels</li>
+              <li>Interactive Web Platforms with Real Physics</li>
+              <li>Physical Tactile Packaging & Unboxing Architecture</li>
+            </ul>
+          </div>
+
+          <div class="engine-sandbox-widget">
+            <div id="forge-physics-canvas" title="Click anywhere to spawn tactile brand blocks">
+              <div class="forge-hint-banner">CLICK ANYWHERE TO DROP & BOUNCE PHYSICS BLOCKS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 03: The Thruster -->
+      <div class="engine-panel">
+        <div class="engine-panel-grid">
+          <div class="engine-info-card">
+            <div class="engine-num-badge">STAGE 03 // TRAJECTORY ACCELERATION</div>
+            <h3 class="engine-title">The Thruster</h3>
+            <p class="engine-plain-meaning">
+              <strong>Plain Meaning:</strong> Pinpointed digital distribution, local community gravity, and conversion funnels that transform spectators into paying believers.
+            </p>
+            <ul class="engine-deliverables-list">
+              <li>Precision Paid Acquisition & Algorithmic Scaling</li>
+              <li>Hyper-Local Guerrilla Activation & City Stunts</li>
+              <li>High-Conversion Landing Pages with Zero Drag</li>
+              <li>Full Retention & Customer Lifecycle Gravity Wells</li>
+            </ul>
+          </div>
+
+          <div class="engine-sandbox-widget">
+            <div class="thruster-widget-container">
+              <div>
+                <span class="spec-key">VELOCITY ACCELERATOR CHAMBER</span>
+                <p class="friction-sub" style="margin-top: 6px;">
+                  Throttle forward to intensify particle stream velocity and observe conversion output.
+                </p>
+              </div>
+
+              <div class="thruster-readouts">
+                <div class="thruster-readout-item">
+                  <div class="lbl">THROTTLE:</div>
+                  <div class="val" id="thruster-speed-val">85% THRUST</div>
+                </div>
+                <div class="thruster-readout-item">
+                  <div class="lbl">PIPELINE BOOST:</div>
+                  <div class="val" id="thruster-conversion-val">+323% CONVERSION</div>
+                </div>
+              </div>
+
+              <div class="compass-tuning-box">
+                <input type="range" id="thruster-throttle-slider" class="compass-slider" min="10" max="100" value="85">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ACT V: THE IGNITION DESK // "IGNITE YOUR TRAJECTORY" (CONTACT & CTA)
+         ==================================================================== -->
+    <section id="act-5-ignition" class="section-stage">
+      <div class="section-header-block">
+        <span class="section-label">ACT V // THE IGNITION DESK</span>
+        <h2 class="section-title">IGNITE YOUR TRAJECTORY.</h2>
+        <p class="section-desc">
+          No sterile corporate questionnaires. Construct your mission parameters using natural language, then flip the heavy industrial lever to transmit your signal.
+        </p>
+      </div>
+
+      <div class="ignition-desk-grid">
+        <!-- Conversational Switchboard Form -->
+        <div class="ignition-switchboard-card">
+          <div class="sentence-builder-block">
+            <div class="sentence-builder-title">MISSION PARAMETER BUILDER //</div>
+            <div class="conversational-sentence">
+              "Hey Antigrav! We are a
+              <select id="sentence-identity" class="sentence-select-chip" data-magnetic>
+                <option value="Local Brand">Local Brand</option>
+                <option value="Fast-growing Startup" selected>Fast-growing Startup</option>
+                <option value="Solo Founder">Solo Founder</option>
+                <option value="Industry Pillar">Industry Pillar</option>
+              </select>
+              ready to
+              <select id="sentence-objective" class="sentence-select-chip" data-magnetic>
+                <option value="Launch a New Brand">Launch a New Brand</option>
+                <option value="Accelerate Sales & Growth" selected>Accelerate Sales & Growth</option>
+                <option value="Command Global Attention">Command Global Attention</option>
+                <option value="Break the Internet">Break the Internet</option>
+              </select>
+              with an estimated target timeline of
+              <select id="sentence-timeline" class="sentence-select-chip" data-magnetic>
+                <option value="Immediate Sprint (<30 Days)" selected>Immediate Sprint (&lt;30 Days)</option>
+                <option value="Next Quarter Ramp">Next Quarter Ramp</option>
+                <option value="Strategic Blueprint">Strategic Blueprint</option>
+              </select>
+              ."
+            </div>
+          </div>
+
+          <div class="terminal-inputs-row">
+            <div class="terminal-input-group">
+              <label for="brand-input">VENTURE / BRAND NAME</label>
+              <input type="text" id="brand-input" class="terminal-input" placeholder="e.g. Apex Studios" value="Apex Dynamics">
+            </div>
+            <div class="terminal-input-group">
+              <label for="contact-input">FOUNDER SIGNAL / EMAIL</label>
+              <input type="email" id="contact-input" class="terminal-input" placeholder="founder@apex.com" value="founder@apex.com">
+            </div>
+          </div>
+
+          <div class="dial-specs-grid" style="border-top: 1px solid var(--cinder-border); padding-top: 20px;">
+            <div class="dial-spec-item">
+              <span class="spec-key">THRUST CAPACITY:</span>
+              <span class="spec-val">9,800 N</span>
+            </div>
+            <div class="dial-spec-item">
+              <span class="spec-key">DISPATCH STATUS:</span>
+              <span class="spec-val">READY ON PAD</span>
+            </div>
+            <div class="dial-spec-item">
+              <span class="spec-key">RESPONSE WINDOW:</span>
+              <span class="spec-val">&lt; 24 HOURS</span>
+            </div>
+            <div class="dial-spec-item">
+              <span class="spec-key">CREATIVE DIRECTORS:</span>
+              <span class="spec-val">ON STANDBY</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Heavy Industrial Brass Lever Console -->
+        <div class="ignition-lever-console">
+          <div class="lever-status-lamp-box">
+            <div class="status-lamp" id="ignition-status-light"></div>
+            <span class="status-lamp-label">IGNITION CONDENSER: ARMED</span>
+          </div>
+
+          <!-- Vertical Mechanical Lever Mechanism -->
+          <div class="lever-assembly-track" id="ignition-lever-track">
+            <div class="lever-track-slot"></div>
+            <div class="lever-handle" id="ignition-lever-handle" data-magnetic data-cursor-label="PULL DOWN">
+              <div class="lever-knurl-rings"></div>
+            </div>
+          </div>
+
+          <div class="lever-instruction-tag">
+            <span>PULL LEVER TO IGNITE</span>
+          </div>
+
+          <!-- Dynamic Trajectory Docket Output -->
+          <div class="ignition-docket-output" id="ignition-docket-output">
+            <!-- Dynamically populated by JS -->
+          </div>
+
+          <button id="ignition-reset-btn" class="btn-reset-lever" data-magnetic>
+            ↺ RESET LAUNCH LEVER
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================================================================
+       MODAL: CASE STUDY DEEP DIVE POPUP
+       ==================================================================== -->
+  <div id="case-modal" class="case-modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-dialog-card">
+      <button id="modal-close-btn" class="modal-close-btn" aria-label="Close Case Study" data-magnetic>×</button>
+
+      <div class="modal-header-block">
+        <div class="modal-case-cat" id="modal-case-category">CASE STUDY CATEGORY</div>
+        <h2 class="modal-case-title" id="modal-case-title">Case Title</h2>
+      </div>
+
+      <div class="modal-metrics-row" id="modal-case-metrics">
+        <!-- Rendered by JS -->
+      </div>
+
+      <div class="modal-narrative-split">
+        <div class="modal-split-box friction">
+          <h4>THE INITIAL HURDLE // BEFORE</h4>
+          <p id="modal-case-friction-desc">Description of client friction.</p>
+        </div>
+        <div class="modal-split-box flow">
+          <h4>THE KINETIC BREAKTHROUGH // AFTER</h4>
+          <p id="modal-case-flow-desc">Description of applied agency force.</p>
+        </div>
+      </div>
+
+      <div class="modal-quote-box">
+        <blockquote id="modal-case-quote">
+          "Client quote praising the transformation."
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- Warm Industrial Footer -->
+  <footer class="site-footer">
+    <div class="footer-col-left">
+      <div class="footer-brand">ANTIGRAV.</div>
+      <p>
+        An artisan's workshop blended with a modern physics laboratory. We engineer visceral momentum for human sparks across every scale.
+      </p>
+      <div class="badge-physics" style="margin-top: 16px;">
+        <span>LOCATION:</span> 52°31'N 13°24'E · GLOBAL TRAJECTORY
+      </div>
+    </div>
+
+    <div class="footer-links-grid">
+      <div class="footer-links-col">
+        <h5>THE 5 ACTS</h5>
+        <ul>
+          <li><a href="#act-1-hero" data-magnetic>Act I: The Resting Ember</a></li>
+          <li><a href="#act-2-manifesto" data-magnetic>Act II: The Scale Dial</a></li>
+          <li><a href="#act-3-portfolio" data-magnetic>Act III: Collision Chamber</a></li>
+          <li><a href="#act-4-engines" data-magnetic>Act IV: The Three Engines</a></li>
+          <li><a href="#act-5-ignition" data-magnetic>Act V: The Ignition Desk</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h5>ENGINES</h5>
+        <ul>
+          <li><a href="#act-4-engines" data-magnetic>01 The Compass</a></li>
+          <li><a href="#act-4-engines" data-magnetic>02 The Forge</a></li>
+          <li><a href="#act-4-engines" data-magnetic>03 The Thruster</a></li>
+          <li><a href="#act-5-ignition" data-magnetic>Trajectory Calculator</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h5>TRANSMISSION</h5>
+        <ul>
+          <li><a href="#act-5-ignition" data-magnetic>signal@antigrav.agency</a></li>
+          <li><a href="#act-5-ignition" data-magnetic>@antigrav.physics</a></li>
+          <li><a href="#act-5-ignition" data-magnetic>Laboratory Journal</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Vendor Scripts (Local Fallback + CDN) -->
+  <script src="vendor/three.min.js"></script>
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <script src="vendor/lenis.min.js"></script>
+
+  <!-- Application Logic Modules -->
+  <script src="js/audio.js"></script>
+  <script src="js/three-scene.js"></script>
+  <script src="js/cursor.js"></script>
+  <script src="js/act-interactions.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
